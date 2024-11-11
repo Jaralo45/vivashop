@@ -17,7 +17,7 @@ class LoginController extends BaseController
         $password = $this->request->getPost('clave');
 
         // Realiza la validación en la base de datos
-        $model = new Modelologin(); // Asegúrate de tener el modelo creado
+        $model = new ModeloLogin(); // Asegúrate de tener el modelo creado
 
         $user = $model->where('username', $username)->first();
 

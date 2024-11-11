@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= base_url("public/css/styles.css") ?>">
+    <link rel="icon" href="<?= base_url("public/img/vivashop.png") ?>">
     <title>VivaShop</title>
 </head>
 <body>
@@ -14,6 +15,19 @@
 <div class="row justify-content-center">
 <div class="col-lg-4 sm-12">
   <form class="form-container text-light p-5" action="<?= base_url("/login") ?>" method="POST">
+  <?php
+  // Verificar si hay un mensaje en la sesión
+  if (session()->has('mensaje')) {
+      // Mostrar el mensaje en una alerta Bootstrap
+      $mensaje = session('mensaje');
+      echo <<<HTML
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>¡Bienvenido!</strong> $mensaje
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  HTML;
+  }
+  ?>
   <div class="col login-sec">
     <h1 class="text-primary text-center">VivaShop</h1>
   </div>
@@ -26,7 +40,7 @@
         <label for="clave">Contraseña</label>
     </div>
     <div class="row mt-3">
-        <span class="text-dark">¿Eres nuevo? <a href="" class="text-primary text-decoration-none text-start">Registrate!</a></span>
+        <span class="text-dark">¿Eres nuevo? <a href="<?= base_url("/new/user") ?>" class="text-primary text-decoration-none text-start">Registrate!</a></span>
     </div>
     <div class="d-grid gap-2 mt-3">
       <button type="submit" class="btn btn-primary btn-block text-white" id="calcular">Entrar</button>  
